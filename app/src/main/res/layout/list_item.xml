@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
             <variable
                 name="viewModel"
-                type="com.mostafa.foodapp.viewModel.CategoryViewModel" />
+                type="com.mostafa.foodapp.data.model.Categories" />
     </data>
 
 
-    <androidx.cardview.widget.CardView xmlns:app="http://schemas.android.com/apk/res-auto"
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
@@ -20,33 +21,29 @@
 
 
 
-            <TextView
-                android:id="@+id/user_id"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="0dp"
-                android:layout_marginBottom="8dp"
-                android:text="@{viewModel.catrgory.toString()}"
-                android:textSize="25sp"
-
-                android:gravity="center"
-                />
-
-            <TextView
-                android:id="@+id/title"
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginEnd="8dp"
-                android:text="@{viewModel.catrgory.toString()}"
-                android:textColor="@color/white"
-                android:textSize="15sp"
-                />
+        <ImageView
+            android:id="@+id/ivLargeNews"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:background="@{viewModel.strCategoryThumb}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/ic_launcher_background" />
 
 
-        </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="150dp"
+            android:gravity="center_vertical"
+            android:text="@{viewModel.strCategoryDescription}"
+            android:textColor="@color/white"
+            android:textSize="15sp"
+            />
+
+
+    </androidx.cardview.widget.CardView>
 
 </layout>

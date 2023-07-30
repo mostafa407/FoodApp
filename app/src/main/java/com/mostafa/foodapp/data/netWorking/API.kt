@@ -1,4 +1,4 @@
-package com.mostafa.foodapp.netWorking
+package com.mostafa.foodapp.data.netWorking
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
