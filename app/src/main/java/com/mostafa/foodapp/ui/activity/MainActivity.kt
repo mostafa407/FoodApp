@@ -2,6 +2,7 @@ package com.mostafa.foodapp.ui.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
@@ -25,30 +26,35 @@ class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     val viewModl: CategoryViewModel by viewModels()
     var category:ArrayList<Categories> = ArrayList()
+    @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
-        binding.lifecycleOwner=this
-        viewModl.getCatrgory()
+        setSupportActionBar(binding.toolbar)
+        val recyclerViewCategories = binding.recycler
+        recyclerViewCategories.setHasFixedSize(true)
 
-            viewModl.category.observe(this@MainActivity, Observer {
-                lifecycleScope.launch (Dispatchers.Main) {
-                    val categories = Categories.CategoryData.getCategoryData(this@MainActivity)
-                    val categoriesRecyclerView = CategoryRecyclerView(categories)
-                    val recyclerViewCategories = binding.recycler
-                    recyclerViewCategories.adapter = categoriesRecyclerView
-                    recyclerViewCategories.layoutManager = GridLayoutManager(this@MainActivity, 2)
-                    recyclerViewCategories.addItemDecoration(
-                        DividerItemDecoration(
-                            this@MainActivity,
-                            GridLayoutManager.VERTICAL
-                        )
-                    )
-                    recyclerViewCategories.setHasFixedSize(true)
+        val categories = Categories.CategoryData.getCategoryData(this@MainActivity)
+        val categoriesRecyclerView = CategoryRecyclerView(categories)
+        var gridLayoutManager=GridLayoutManager(this,2)
+        gridLayoutManager.orientation=GridLayoutManager.VERTICAL
+        recyclerViewCategories.layoutManager=gridLayoutManager
+        recyclerViewCategories.adapter = categoriesRecyclerView
+
+        recyclerViewCategories.addItemDecoration(
+            DividerItemDecoration(
+                this@MainActivity,
+                GridLayoutManager.VERTICAL
+            )
+        )
+
+
+            viewModl.category.observe(this@MainActivity, Observer {category ->
+                GlobalScope.launch(Dispatchers.Main) {
+                    viewModl.getCatrgory()
+              
+
                 }
-
             })
-
-            }
+    }
 }

@@ -22,7 +22,7 @@
 
 
         <ImageView
-            android:id="@+id/ivLargeNews"
+            android:id="@+id/strCategoryThumb"
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:background="@{viewModel.strCategoryThumb}"

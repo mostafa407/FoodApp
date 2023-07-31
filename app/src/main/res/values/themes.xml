@@ -6,4 +6,12 @@
     </style>
 
     <style name="Theme.FoodApp" parent="Base.Theme.FoodApp" />
+    <style name="cusomToolBar" parent="Widget.AppCompat.Toolbar">
+        <item name="titleTextAppearance">@style/CustomTitleApperarance</item>
+    </style>
+    <style name="CustomTitleApperarance" parent="TextAppearance.Design.CollapsingToolbar.Expanded">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">#ff00ff</item>
+
+    </style>
 </resources>

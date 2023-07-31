@@ -1,6 +1,8 @@
 package com.mostafa.foodapp.ui.viewModel
 
+import android.annotation.SuppressLint
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -9,9 +11,8 @@ import com.mostafa.foodapp.data.model.Result
 import com.mostafa.foodapp.data.netWorking.CatergoryInterface
 import com.mostafa.foodapp.data.netWorking.RetroBuilder
 import com.mostafa.foodapp.data.reoisitory.CategoryRepositoryImp
-import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 
 class CategoryViewModel:ViewModel() {
@@ -25,12 +26,19 @@ class CategoryViewModel:ViewModel() {
         getCatrgory()
     }
 
-  fun getCatrgory() {
+  @SuppressLint("SuspiciousIndentation")
+  fun getCatrgory()  {
       viewModelScope.launch(Dispatchers.IO) {
-          repo.getcat().collect {
-              category.postValue(it)
+          val response=repo.getcat()
+              category.postValue(response)
+
           }
 
       }
+
   }
+
+private fun <T> MutableLiveData<T>.postValue(response: Flow<T>) {
+    TODO("Not yet implemented")
 }
+
