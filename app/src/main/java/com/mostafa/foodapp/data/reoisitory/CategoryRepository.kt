@@ -6,6 +6,6 @@ import kotlinx.coroutines.flow.Flow
 import retrofit2.Response
 
 interface CategoryRepository {
-    suspend fun getcat() :Flow<Result<Categories?>>
+    suspend fun getcat() :Result<Categories?>
 
 }

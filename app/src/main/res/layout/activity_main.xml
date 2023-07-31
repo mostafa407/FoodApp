@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
+
         <variable
-            name="viewModel"
-            type="com.mostafa.foodapp.ui.viewModel.CategoryViewModel" />
+            name="myAdapter"
+            type="com.mostafa.foodapp.ui.adapter.CategoryRecyclerView" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -34,7 +35,9 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/toolbar"
             tools:listitem="@layout/list_item"
-            app:listData="@{viewModel.getCatrgory}"/>
+            android:adapter="@{myAdapter}"
+
+            />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

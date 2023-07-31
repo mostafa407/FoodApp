@@ -13,6 +13,8 @@ import com.mostafa.foodapp.data.netWorking.RetroBuilder
 import com.mostafa.foodapp.data.reoisitory.CategoryRepositoryImp
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class CategoryViewModel:ViewModel() {
@@ -23,7 +25,6 @@ class CategoryViewModel:ViewModel() {
     init {
         var apiser = RetroBuilder.getRetroBuilder().create(CatergoryInterface::class.java)
         repo = CategoryRepositoryImp(apiser)
-        getCatrgory()
     }
 
   @SuppressLint("SuspiciousIndentation")
@@ -31,14 +32,11 @@ class CategoryViewModel:ViewModel() {
       viewModelScope.launch(Dispatchers.IO) {
           val response=repo.getcat()
               category.postValue(response)
-
+            Log.d("result", response.toString())
           }
 
       }
 
   }
 
-private fun <T> MutableLiveData<T>.postValue(response: Flow<T>) {
-    TODO("Not yet implemented")
-}
 

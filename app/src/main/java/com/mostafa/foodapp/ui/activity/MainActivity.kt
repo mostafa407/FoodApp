@@ -1,5 +1,6 @@
 package com.mostafa.foodapp.ui.activity
 
+import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -25,7 +26,9 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     val viewModl: CategoryViewModel by viewModels()
-    var category:ArrayList<Categories> = ArrayList()
+    val adapter = CategoryRecyclerView()
+
+    @SuppressLint("SuspiciousIndentation")
     @OptIn(DelicateCoroutinesApi::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,13 +36,12 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(binding.toolbar)
         val recyclerViewCategories = binding.recycler
         recyclerViewCategories.setHasFixedSize(true)
-
         val categories = Categories.CategoryData.getCategoryData(this@MainActivity)
-        val categoriesRecyclerView = CategoryRecyclerView(categories)
+//        val categoriesRecyclerView = CategoryRecyclerView(categories)
         var gridLayoutManager=GridLayoutManager(this,2)
         gridLayoutManager.orientation=GridLayoutManager.VERTICAL
         recyclerViewCategories.layoutManager=gridLayoutManager
-        recyclerViewCategories.adapter = categoriesRecyclerView
+//        recyclerViewCategories.adapter = categoriesRecyclerView
 
         recyclerViewCategories.addItemDecoration(
             DividerItemDecoration(
@@ -48,13 +50,17 @@ class MainActivity : AppCompatActivity() {
             )
         )
 
-
+             binding.recycler.adapter = adapter
             viewModl.category.observe(this@MainActivity, Observer {category ->
-                GlobalScope.launch(Dispatchers.Main) {
-                    viewModl.getCatrgory()
-              
 
+                GlobalScope.launch(Dispatchers.Main) {
+                        adapter.setCategoryList(categories)
+                        viewModl.getCatrgory()
                 }
             })
+
+
+
+
     }
 }
