@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.DiffUtil
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,7 +12,8 @@ import com.mostafa.foodapp.R
 import com.mostafa.foodapp.data.model.Categories
 import com.mostafa.foodapp.databinding.ListItemBinding
 
-class CategoryRecyclerView(): RecyclerView.Adapter<CategoryRecyclerView.CategoryViewHolder>() {
+class CategoryRecyclerView(private val categoiesList: List<Categories.Category>) :
+    RecyclerView.Adapter<CategoryRecyclerView.CategoryViewHolder>() {
     private lateinit var binding: ListItemBinding
     lateinit var categories: ArrayList<Categories>
     @SuppressLint("NotifyDataSetChanged")
@@ -22,9 +22,10 @@ class CategoryRecyclerView(): RecyclerView.Adapter<CategoryRecyclerView.Category
         notifyDataSetChanged()
     }
     @SuppressLint("NotifyDataSetChanged")
-    class CategoryViewHolder(private var binding:ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-      fun bind(categories: Categories){
-            binding.viewModel=categories
+    class CategoryViewHolder(private var binding:ListItemBinding) :
+        RecyclerView.ViewHolder(binding.root) {
+      fun bind(categories: Categories.Category){
+            binding.model=categories
         }
     }
     var category = mutableListOf<Categories>()
@@ -37,13 +38,17 @@ class CategoryRecyclerView(): RecyclerView.Adapter<CategoryRecyclerView.Category
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.apply {
-            bind(categories[position])
-        }
+        val categories = categoiesList[position]
+        holder.bind(categories)
+
+    }
+
+    private fun bind(categories: Categories) {
+
     }
 
     override fun getItemCount():Int {
-     return categories.size
+     return categoiesList.size
     }
     companion object {
         @JvmStatic
@@ -59,14 +64,14 @@ class CategoryRecyclerView(): RecyclerView.Adapter<CategoryRecyclerView.Category
         }
     }
 }
-class MainViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+//class MainViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
+//
+//    fun bind(categories: Categories) {
+//        binding.data =categories
+//    }
 
-    fun bind(categories: Categories) {
-        binding.viewModel= categories
-    }
 
 
-}
 
 
 

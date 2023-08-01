@@ -2,6 +2,7 @@ package com.mostafa.foodapp.ui.viewModel
 
 import android.annotation.SuppressLint
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -18,25 +19,26 @@ import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class CategoryViewModel:ViewModel() {
-    var category = MutableLiveData<Result<Categories?>>()
+    var category = MutableLiveData<Categories>()
     private var repo: CategoryRepositoryImp
 
 
     init {
-        var apiser = RetroBuilder.getRetroBuilder().create(CatergoryInterface::class.java)
         repo = CategoryRepositoryImp(apiser)
     }
 
-  @SuppressLint("SuspiciousIndentation")
-  fun getCatrgory()  {
-      viewModelScope.launch(Dispatchers.IO) {
-          val response=repo.getcat()
-              category.postValue(response)
-            Log.d("result", response.toString())
-          }
+    @SuppressLint("SuspiciousIndentation")
+    fun getCatrgory() {
+        viewModelScope.launch(Dispatchers.IO) {
+            val response = repo.getcat()
 
-      }
+            if (response.isSuccessful) {
+                category.postValue(response.body())
+                Log.d("result", response.body()!!.categories.size.toString())
+            }
 
-  }
+        }
 
+    }
 
+}

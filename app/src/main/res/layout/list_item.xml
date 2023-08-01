@@ -6,8 +6,8 @@
     <data>
 
             <variable
-                name="viewModel"
-                type="com.mostafa.foodapp.data.model.Categories" />
+                name="model"
+                type="com.mostafa.foodapp.data.model.Categories.Category" />
     </data>
 
 
@@ -16,16 +16,15 @@
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
         app:cardElevation="20dp"
-        android:layout_margin="5dp"
+        android:layout_margin="8dp"
         app:cardBackgroundColor="@color/black">
 
 
 
-        <androidx.appcompat.widget.AppCompatImageView
+        <ImageView
             android:id="@+id/strCategoryThumb"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            app:loadImage="@{viewModel.strCategoryThumb}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -34,16 +33,17 @@
 
         <TextView
             android:id="@+id/title"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_marginLeft="150dp"
-            android:gravity="center_vertical"
-            android:text="@{viewModel.strCategoryDescription}"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:textSize="15sp"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/strCategoryThumb"
+            tools:text="Large News Title"
+            android:layout_marginTop="8dp"
+
             />
-
-
     </androidx.cardview.widget.CardView>
 
 </layout>
