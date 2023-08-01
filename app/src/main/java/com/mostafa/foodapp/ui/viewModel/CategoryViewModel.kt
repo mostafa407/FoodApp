@@ -24,6 +24,7 @@ class CategoryViewModel:ViewModel() {
 
 
     init {
+        var apiser = RetroBuilder.getRetroBuilder().create(CatergoryInterface::class.java)
         repo = CategoryRepositoryImp(apiser)
     }
 
