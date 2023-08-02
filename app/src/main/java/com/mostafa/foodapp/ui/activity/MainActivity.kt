@@ -23,32 +23,37 @@ abstract class MainActivity() : AppCompatActivity() {
     lateinit var binding:ActivityMainBinding
     lateinit var viewModel: CategoryViewModel
 
-    var categoriesli: ArrayList<Categories> =ArrayList()
-     val categoryRecyclerView: CategoryRecyclerView by lazy { CategoryRecyclerView() }
+    var categoriesli: ArrayList<Categories.Category> = ArrayList()
+     val categoryRecyclerView: CategoryRecyclerView by lazy { CategoryRecyclerView(allData = ArrayList()) }
     @SuppressLint("SuspiciousIndentation")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding=DataBindingUtil.setContentView(this,R.layout.activity_main)
         setSupportActionBar(binding.toolbar)
-        binding.recycler.adapter=categoryRecyclerView
-        val linearManger=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        binding.recycler.layoutManager=linearManger
-        binding.recycler.setHasFixedSize(true)
-        binding.recycler.addItemDecoration(
-            DividerItemDecoration(
-                this@MainActivity,
-                LinearLayoutManager.VERTICAL
-            )
-        )
-        categoryRecyclerView.setCategoryList(categoriesli)
+
+//        val linearManger=LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
+//        binding.recycler.layoutManager=linearManger
+//        binding.recycler.setHasFixedSize(true)
+//        categoryRecyclerView.setCategoryList(categorical)
+//        val linearLayoutManager = LinearLayoutManager(this)
+//        linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
+//        binding.recycler.adapter=categoryRecyclerView
+//        binding.recycler.setLayoutManager(linearLayoutManager)
+//        binding.recycler.addItemDecoration(
+//            DividerItemDecoration(
+//                this@MainActivity,
+//                LinearLayoutManager.VERTICAL
+//            )
+//        )
 
 
         viewModel = ViewModelProvider(this,CategoryViewModelFactory(
             ApiHelper(RetrofitBuilder.apiService)))[CategoryViewModel::class.java]
-        viewModel.category.observe(this@MainActivity, Observer { categories ->
+        binding.recycler.adapter=categoryRecyclerView
 
-            Log.d("main",categories.toString())
-                }
+        viewModel.category.observe(this@MainActivity, Observer { categories ->
+            categoryRecyclerView.setCategoryList(categoriesli)
+         }
             )
 
 }

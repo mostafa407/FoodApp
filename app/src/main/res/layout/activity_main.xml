@@ -3,11 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-<data>
-    <variable
-        name="adapter"
-        type="com.mostafa.foodapp.ui.adapter.CategoryRecyclerView" />
-</data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -31,7 +26,6 @@
             android:layout_marginTop="64dp"
             android:orientation="vertical"
             android:background="@color/white"
-            android:adapter="@{adapter}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="parent"
