@@ -15,7 +15,7 @@
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
             tools:ignore="MissingConstraints"
-             app:title="@string/app_name"
+            app:title="@string/app_name"
             />
 
         <androidx.recyclerview.widget.RecyclerView
