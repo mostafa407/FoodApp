@@ -1,5 +1,4 @@
 package com.mostafa.foodapp.ui.activity
-
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +8,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.mostafa.foodapp.R
 import com.mostafa.foodapp.data.model.Categories
 import com.mostafa.foodapp.data.netWorking.ApiHelper
@@ -17,7 +15,6 @@ import com.mostafa.foodapp.data.netWorking.RetrofitBuilder
 import com.mostafa.foodapp.databinding.ActivityMainBinding
 import com.mostafa.foodapp.ui.adapter.CategoryRecyclerView
 import com.mostafa.foodapp.ui.viewModel.CategoryViewModel
-
 import com.mostafa.foodapp.ui.viewModel.CategoryViewModelFactory
 
 
@@ -25,7 +22,7 @@ class MainActivity : AppCompatActivity() {
         lateinit var binding: ActivityMainBinding
         lateinit var viewModel: CategoryViewModel
 
-        var categoriesli: ArrayList<Categories.Category> = ArrayList()
+        var categoriesli: ArrayList<Categories> = ArrayList()
         val categoryRecyclerView: CategoryRecyclerView by lazy { CategoryRecyclerView(allData = ArrayList()) }
 
         @SuppressLint("SuspiciousIndentation")

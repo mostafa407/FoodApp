@@ -8,15 +8,15 @@ import com.mostafa.foodapp.R
 import com.mostafa.foodapp.data.model.Categories
 import com.mostafa.foodapp.databinding.ListItemBinding
 
-class CategoryRecyclerView(allData: ArrayList<Categories.Category>)
+class CategoryRecyclerView(allData: ArrayList<Categories>)
     : RecyclerView.Adapter<CategoryRecyclerView.CategoryViewHolder>() {
-    var categoiesList = mutableListOf<Categories.Category>()
+    var categoiesList = mutableListOf<Categories>()
 
     inner class CategoryViewHolder(val listItemBinding: ListItemBinding) :
         RecyclerView.ViewHolder(listItemBinding.root) {
 
     }
-    fun setCategoryList(categoiesList: ArrayList<Categories.Category>) {
+    fun setCategoryList(categoiesList: ArrayList<Categories>) {
         this.categoiesList = categoiesList.toMutableList()
         notifyDataSetChanged()
     }

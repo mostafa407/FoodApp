@@ -6,7 +6,7 @@
     <data>
             <variable
                 name="model"
-                type="com.mostafa.foodapp.data.model.Categories.Category" />
+                type="com.mostafa.foodapp.data.model.Categories" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -22,7 +22,6 @@
             android:layout_width="match_parent"
             android:gravity="center"
             android:textSize="25sp"
-            android:text="@{model.strCategoryDescription}"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="0dp"
             android:layout_marginTop="8dp"
@@ -34,7 +33,6 @@
             android:layout_height="30dp"
             android:layout_width="match_parent"
             android:textSize="15sp"
-            android:text="@{model.strCategory}"
             android:layout_marginEnd="8dp"
             android:layout_marginTop="50dp"
             android:layout_marginStart="10dp"
