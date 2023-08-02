@@ -3,6 +3,7 @@ package com.mostafa.foodapp.ui.activity
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,7 +21,7 @@ import com.mostafa.foodapp.ui.viewModel.CategoryViewModel
 import com.mostafa.foodapp.ui.viewModel.CategoryViewModelFactory
 
 
-class MainActivity() : AppCompatActivity() {
+class MainActivity : AppCompatActivity() {
         lateinit var binding: ActivityMainBinding
         lateinit var viewModel: CategoryViewModel
 
@@ -57,6 +58,7 @@ class MainActivity() : AppCompatActivity() {
 
             viewModel.category.observe(this@MainActivity, Observer { categories ->
                 categoryRecyclerView.setCategoryList(categoriesli)
+                Log.d("main",categories.toString())
             }
             )
 
