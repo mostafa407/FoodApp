@@ -5,35 +5,33 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.mostafa.foodapp.R
 import com.mostafa.foodapp.data.model.Categories
 import com.mostafa.foodapp.databinding.ListItemBinding
 
-class CategoryRecyclerView(private val categoiesList: List<Categories.Category>) :
+class CategoryRecyclerView() :
     RecyclerView.Adapter<CategoryRecyclerView.CategoryViewHolder>() {
     private lateinit var binding: ListItemBinding
+    private lateinit var  categoiesList:List<Categories.Category>
     lateinit var categories: ArrayList<Categories>
-    @SuppressLint("NotifyDataSetChanged")
-    fun setCategoryList(categories: List<Categories>) {
-        this.category = categories.toMutableList()
+    fun setCategoryList(categories: ArrayList<Categories>) {
+        this.categories = categories
         notifyDataSetChanged()
     }
+
     @SuppressLint("NotifyDataSetChanged")
-    class CategoryViewHolder(private var binding:ListItemBinding) :
+    class CategoryViewHolder(private var binding: ListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
-      fun bind(categories: Categories.Category){
-            binding.model=categories
+        fun bind(categories: Categories.Category) {
+            binding.model = categories
         }
     }
+
     var category = mutableListOf<Categories>()
-
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
-        binding= ListItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+        binding = ListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return CategoryViewHolder(binding)
     }
 
@@ -43,13 +41,10 @@ class CategoryRecyclerView(private val categoiesList: List<Categories.Category>)
 
     }
 
-    private fun bind(categories: Categories) {
-
+    override fun getItemCount(): Int {
+        return categoiesList.size
     }
 
-    override fun getItemCount():Int {
-     return categoiesList.size
-    }
     companion object {
         @JvmStatic
         @BindingAdapter("loadImage")
@@ -64,11 +59,6 @@ class CategoryRecyclerView(private val categoiesList: List<Categories.Category>)
         }
     }
 }
-//class MainViewHolder(val binding: ListItemBinding) : RecyclerView.ViewHolder(binding.root) {
-//
-//    fun bind(categories: Categories) {
-//        binding.data =categories
-//    }
 
 
 

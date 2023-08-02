@@ -15,7 +15,8 @@ data class Categories(
     @SerializedName("strCategoryDescription")
     val strCategoryDescription: String,
     @SerializedName("strCategoryThumb")
-    val strCategoryThumb:  String?)
+    val strCategoryThumb:  String?
+    )
 
 
 }
