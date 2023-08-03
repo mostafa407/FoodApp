@@ -54,20 +54,15 @@ class MainActivity : AppCompatActivity() {
                     LinearLayoutManager.VERTICAL
                 )
             )
-
-
             viewModel = ViewModelProvider(
                 this, CategoryViewModelFactory(
                     ApiHelper(RetrofitBuilder.apiService)
                 )
             )[CategoryViewModel::class.java]
-
-
-
             viewModel.category.observe(this@MainActivity, Observer { categories ->
                 val adapter=CategoryRecyclerView(categoriesli)
-                binding.recycler.setAdapter(adapter);
-                adapter.update(categoriesli)
+                binding.recycler.adapter = adapter
+                adapter.SetCategoryList(categoriesli)
 
                 Log.d("main",categories.toString())
             }

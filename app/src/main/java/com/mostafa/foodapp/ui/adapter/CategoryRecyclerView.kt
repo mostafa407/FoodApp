@@ -11,7 +11,7 @@ import com.mostafa.foodapp.databinding.ListItemBinding
 
 class CategoryRecyclerView(var list:ArrayList<Categories.Category>)
     : RecyclerView.Adapter<CategoryRecyclerView.CategoryViewHolder>() {
-    fun update(lists : ArrayList<Categories.Category>) {
+    fun SetCategoryList(lists : ArrayList<Categories.Category>) {
         this.list = lists
         notifyDataSetChanged()
     }
@@ -47,7 +47,9 @@ class CategoryRecyclerView(var list:ArrayList<Categories.Category>)
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
         Log.d("ADAPTER", "INBINDfunc $holder")
 
-       holder.listItemBinding.model = list[position]
+//       holder.listItemBinding.model = list[position]
+        holder.bind(list[position])
+
 
 
     }
