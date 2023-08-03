@@ -1,41 +1,39 @@
 package com.mostafa.foodapp.ui.adapter
 
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.mostafa.foodapp.R
 import com.mostafa.foodapp.data.model.Categories
 import com.mostafa.foodapp.databinding.ListItemBinding
 
-class CategoryRecyclerView(allData: ArrayList<Categories>)
+class CategoryRecyclerView(var categories:ArrayList<Categories>)
     : RecyclerView.Adapter<CategoryRecyclerView.CategoryViewHolder>() {
-    var categoiesList = mutableListOf<Categories>()
 
-    inner class CategoryViewHolder(val listItemBinding: ListItemBinding) :
+   class CategoryViewHolder(val listItemBinding: ListItemBinding) :
         RecyclerView.ViewHolder(listItemBinding.root) {
 
     }
-    fun setCategoryList(categoiesList: ArrayList<Categories>) {
-        this.categoiesList = categoiesList.toMutableList()
-        notifyDataSetChanged()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
+        val layoutInflater = LayoutInflater.from(parent.context)
+        val binding = ListItemBinding.inflate(layoutInflater, parent, false)
+        return CategoryViewHolder(binding)
+
+
+    }
+//    fun setCategoryList(categoiesList: ArrayList<Categories>) {
+//        this.categoiesList = categoiesList.toMutableList()
+//        notifyDataSetChanged()
+//    }
+
+    override fun getItemCount(): Int {
+        Log.d("COUNT",".getItemCountcalled ${categories.size}")
+
+     return   categories.size
     }
 
-    override fun getItemCount(): Int = categoiesList.size
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        CategoryViewHolder(
-            DataBindingUtil.inflate<ListItemBinding>(
-                LayoutInflater.from(parent.context),
-                R.layout.list_item,
-                parent,
-                false
-            )
-        )
-
-
-
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.listItemBinding.model = categoiesList[position]
+        holder.listItemBinding.model = categories[position]
     }
 
 

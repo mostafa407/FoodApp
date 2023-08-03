@@ -3,6 +3,7 @@ import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -23,7 +24,6 @@ class MainActivity : AppCompatActivity() {
         lateinit var viewModel: CategoryViewModel
 
         var categoriesli: ArrayList<Categories> = ArrayList()
-        val categoryRecyclerView: CategoryRecyclerView by lazy { CategoryRecyclerView(allData = ArrayList()) }
 
         @SuppressLint("SuspiciousIndentation")
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -36,8 +36,13 @@ class MainActivity : AppCompatActivity() {
         binding.recycler.setHasFixedSize(true)
         val linearLayoutManager = LinearLayoutManager(this)
         linearLayoutManager.orientation = LinearLayoutManager.VERTICAL
-        binding.recycler.adapter=categoryRecyclerView
         binding.recycler.setLayoutManager(linearLayoutManager)
+            binding.recycler.layoutManager = LinearLayoutManager(this)
+
+            binding.recycler.visibility = View.VISIBLE
+
+            Log.d("TEST1","${binding.recycler}")
+
         binding.recycler.addItemDecoration(
             DividerItemDecoration(
                 this@MainActivity,
@@ -51,10 +56,12 @@ class MainActivity : AppCompatActivity() {
                     ApiHelper(RetrofitBuilder.apiService)
                 )
             )[CategoryViewModel::class.java]
-                binding.recycler.adapter=categoryRecyclerView
 
             viewModel.category.observe(this@MainActivity, Observer { categories ->
-                categoryRecyclerView.setCategoryList(categoriesli)
+                val adapter=CategoryRecyclerView(categoriesli)
+                binding.recycler.setAdapter(adapter);
+                adapter.categories=categoriesli
+
                 Log.d("main",categories.toString())
             }
             )
