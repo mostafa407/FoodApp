@@ -13,7 +13,8 @@
     </data>
 
     <androidx.cardview.widget.CardView
-        app:cardBackgroundColor="#9E2727"
+
+        app:cardBackgroundColor="?attr/colorPrimary"
         android:layout_margin="5dp"
         app:cardElevation="20dp"
         app:cardCornerRadius="20dp"
@@ -21,12 +22,12 @@
         android:layout_width="match_parent">
 
         <ImageView
-            android:layout_height="0dp"
-            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
             android:gravity="center"
             android:textSize="25sp"
             android:src="@drawable/ic_launcher_background"
-            android:layout_marginBottom="8dp"
+            android:layout_marginBottom="50dp"
             android:layout_marginEnd="0dp"
             android:layout_marginTop="8dp"
             android:layout_marginStart="10dp"
@@ -35,14 +36,14 @@
 
 
         <TextView
-            android:layout_height="30dp"
-            android:layout_width="match_parent"
-            android:textSize="15sp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="50dp"
-            android:text="@{model.strCategory}"
-            android:layout_marginStart="10dp"
             android:id="@+id/strCategory"
-            android:textColor="@color/white" />
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="120dp"
+            android:layout_marginEnd="8dp"
+            android:text="@{model.strCategory}"
+            android:textColor="@color/black"
+            android:textSize="15sp" />
     </androidx.cardview.widget.CardView>
 </layout>

@@ -11,11 +11,11 @@ data class Categories(
   data class Category(
     val idCategory: String,
     @SerializedName("strCategory")
-    val strCategory: String?,
+    val strCategory: String,
     @SerializedName("strCategoryDescription")
     val strCategoryDescription: String,
     @SerializedName("strCategoryThumb")
-    val strCategoryThumb:  String?
+    val strCategoryThumb:  String
     )
 
 
