@@ -2,7 +2,7 @@ package com.mostafa.foodapp.ui.viewModel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.mostafa.foodapp.data.netWorking.ApiHelper
+import com.mostafa.foodapp.data.netWorking.Categories.ApiHelper
 import com.mostafa.foodapp.data.reoisitory.CategoryRepository
 
 class CategoryViewModelFactory(private val apiHelper: ApiHelper) : ViewModelProvider.Factory {

@@ -1,8 +1,7 @@
-package com.mostafa.foodapp.data.netWorking
+package com.mostafa.foodapp.data.netWorking.Categories
 
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.create
 
 
 object RetrofitBuilder {
